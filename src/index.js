@@ -27,7 +27,7 @@ const server = http.createServer(app);
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://ticket-booking-rfmk7rqp1-dawgdevvs-projects.vercel.app",
+  "https://ticket-booking-app-three.vercel.app/"
   "https://dtix-backend-7f609a0e60c3.herokuapp.com"
 ];
 
