@@ -2,7 +2,7 @@ import express from "express";
 import session from "express-session";
 import connectDB from "./db/db.js";
 import userRoutes from "./routes/user.routes.js";
-const cors = require("cors");
+import cors from "cors";	
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import eventRoutes from "./routes/event.routes.js";
@@ -26,10 +26,10 @@ const PORT = process.env.PORT || 8000;
 const server = http.createServer(app);
 
 const allowedOrigins = [
-  "http://localhost:5173",
-  "https://ticket-booking-app-three.vercel.app/"
-  
-];
+	"http://localhost:5173",
+	"https://ticket-booking-app-three.vercel.app/",
+	"https://dtix-backend-7f609a0e60c3.herokuapp.com"
+  ];
 
 const corsOptions = {
   origin: function(origin, callback) {
