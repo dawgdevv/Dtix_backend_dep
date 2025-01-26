@@ -2,7 +2,7 @@ import express from "express";
 import session from "express-session";
 import connectDB from "./db/db.js";
 import userRoutes from "./routes/user.routes.js";
-import cors from "cors";
+const cors = require("cors");
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import eventRoutes from "./routes/event.routes.js";
