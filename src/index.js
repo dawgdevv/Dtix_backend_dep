@@ -24,20 +24,33 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 
 const server = http.createServer(app);
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://ticket-booking-rfmk7rqp1-dawgdevvs-projects.vercel.app",
+  "https://dtix-backend-7f609a0e60c3.herokuapp.com"
+];
+
+const corsOptions = {
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
+
 const io = new Server(server, {
-	cors: {
-		origin: "https://ticket-booking-app-three.vercel.app/",
-		credentials: true,
-	},
+  cors: corsOptions
 });
 
 app.use(express.json());
-app.use(
-	cors({
-		origin: "https://ticket-booking-app-three.vercel.app/",
-		credentials: true,
-	})
-);
 
 connectDB();
 
