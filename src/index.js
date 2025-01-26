@@ -40,7 +40,7 @@ const corsOptions = {
   app.options('*', cors(corsOptions));
   
   const io = new Server(server, {
-	cors: corsOptions,
+	cors: '*',
 	transports: ['websocket', 'polling']
   });
 
