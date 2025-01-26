@@ -25,30 +25,24 @@ const PORT = process.env.PORT || 8000;
 
 const server = http.createServer(app);
 
-const allowedOrigins = [
-	"http://localhost:5173",
-	"https://ticket-booking-app-three.vercel.app/",
-	"https://dtix-backend-7f609a0e60c3.herokuapp.com"
-  ];
+
 
 const corsOptions = {
-  origin: function(origin, callback) {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-};
-
-app.use(cors(corsOptions));
-
-const io = new Server(server, {
-  cors: corsOptions
-});
+	origin: "*",
+	methods: "*",
+	allowedHeaders: "*",
+	credentials: true,
+	preflightContinue: true,
+	optionsSuccessStatus: 200
+  };
+  
+  app.use(cors(corsOptions));
+  app.options('*', cors(corsOptions));
+  
+  const io = new Server(server, {
+	cors: corsOptions,
+	transports: ['websocket', 'polling']
+  });
 
 app.use(express.json());
 
