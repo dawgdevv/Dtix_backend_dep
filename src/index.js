@@ -30,7 +30,7 @@ const server = http.createServer(app);
 const corsOptions = {
 	origin: "*",
 	methods: "*",
-	allowedHeaders: "*",
+	allowedHeaders: ["Content-Type", "Authorization"],
 	credentials: true,
 	preflightContinue: true,
 	optionsSuccessStatus: 200
